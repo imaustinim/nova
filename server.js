@@ -1,5 +1,7 @@
+const express = require('express');
+const app = express();
+
 var createError = require('http-errors');
-var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -7,7 +9,6 @@ var logger = require('morgan');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,6 +22,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+app.get("/api/artists", (req, res) => {
+  const artists = [
+    {id: 1, firstName: "Fred", lastName: "Johnson"},
+    {id: 2, firstName: "Doowey", lastName: "Asdof"},
+    {id: 3, firstName: "John", lastName: "Wreca"},
+  ]
+  res.send(artists)
+})
+
+const port = 5000;
+app.listen(5000, () => {
+  console.log(`server connected on port ${port}`);
+})
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
