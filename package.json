@@ -1,0 +1,7 @@
+{
+    "scripts": {
+        "client": "npm start --prefix client",
+        "server": "cd server && nodemon server.js",
+        "dev": "concurrently \"npm run server\" \"npm run client\""
+      }
+}

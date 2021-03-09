@@ -1,13 +1,10 @@
 {
-  "name": "MERN Boilerplate",
+  "name": "server",
   "version": "0.0.1",
-  "public": true,
+  "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "start-dev": "nodemon server.js",
-    "server": "nodemon server.js",
-    "client": "npm start --prefix ../client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "server": "nodemon server.js"
   },
   "dependencies": {
     "concurrently": "^6.0.0",
