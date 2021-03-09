@@ -3,9 +3,9 @@
 /**
  * Module dependencies.
  */
-
 var app = require("../server");
-var debug = require('debug')('MERN Boilerplate:server');
+var express = require('express');
+var debug = require('debug')('nova:server');
 var http = require('http');
 
 /**
