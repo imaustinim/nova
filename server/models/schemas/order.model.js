@@ -1,17 +1,24 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const orderSchema = new Schema({
-    orderId: {
-        type: String,
-        required: true,
-        unique: true
+const OrderSchema = new Schema({
+    projectId: {
+        type: Schema.Types.ObjectId,
+        ref: "Project",
+        required: true
+    },
+    contract: {
+        returnRate: {
+            type: Number,
+            required: true,
+        },
+        quantity: {
+            type: Number,
+            required: true,
+            default: 1,
+        },
     },
     orderDetails: {
-        projectId: {
-            type: String,
-            required: true
-        },
         orderSummary: {
             subtotal: {
                 type: Number,
@@ -44,7 +51,7 @@ const orderSchema = new Schema({
         }
     }
 }, {
-    timestamps = true
+    timestamps: true
 });
 
-module.exports = mongoose.model("Order", orderSchema)
+module.exports = OrderSchema

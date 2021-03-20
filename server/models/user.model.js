@@ -1,57 +1,67 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
-const orderSchema = require("./order.model")
+const OrderSchema = require("./schemas/order.model");
+const SocialMediaSchema = require("./schemas/socialmedia.model");
 
 const userSchema = new Schema({
-    username: {
-        type: String,
-        required: true,
-        unique: true,
-        trim: true,
-        minlength: 3
-    },
-    firstName: {
-        type: String,
-        required: true,
-        unique: false,
-        trim: true,
-        minlength: 2
-    },
-    lastName: {
-        type: String,
-        required: true,
-        unique: false,
-        trim: true,
-        minlength: 2
-    },
-    birthDate: {
-        type: Date,
-        required: false,
-        unique: false,
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-        trim: true,
-    },
-    phone: {
-        type: String,
-        required: false,
-        unique: false,
-        trim: true
-    },
-    bio: {
-        type: String,
-        required: false,
-        unique: false,
-        trim: false,
-        minlength: 0,
-    },
-    orders: [orderSchema]
+    details: {
+        loginId: {
+            type: String,
+        },
+        firstName: {
+            type: String,
+            required: true,
+            trim: true,
+            minlength: 2
+        },
+        lastName: {
+            type: String,
+            required: true,
+            trim: true,
+            minlength: 2
+        },
+        username: {
+            type: String,
+            unique: true,
+            trim: true,
+            minlength: 1
+        },
+        displayName: {
+            type: String,
+            required: true,
+            trim: true,
+            minlength: 1
+        },
+        position: {
+            type: String,
+            trim: true,
+        },
+        genres: {
+            type: Array,
+        },
+        profilePicture: {
+            type: String,
+        },
+        location: {
+            type: String,
+            trim: true,
+        },
+        birthDate: {
+            type: Date,
+        },
+        bio: {
+            type: String,
+            unique: false,
+            trim: false,
+        },
+    },   
+    socialMedia: SocialMediaSchema,
+    orders: [OrderSchema],
+    projects: [{
+        type: Schema.Types.ObjectId
+    }],
 }, {
-    timestamps = true,
+    timestamps: true,
 });
 
 module.exports = mongoose.model("User", userSchema)

@@ -1,7 +1,6 @@
 const router = require("express").Router();
+const ctrl = require("../controllers/index.controllers")
 
-router.get("/", (req, res) => {
-    console.log("Redirected to HomePage");
-});
+router.get("/", ctrl.show);
 
 module.exports = router;
