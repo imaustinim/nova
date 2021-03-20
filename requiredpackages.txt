@@ -1,0 +1,15 @@
+__
+express 
+cors
+mongoose
+express-session
+connect-mongodb-session
+dotenv
+method-override
+moment
+morgan
+passport
+passport-google-oauth20 passport-facebook passport-twitter passport-twitch
+bootstrap-icons
+body-parser
+multer
