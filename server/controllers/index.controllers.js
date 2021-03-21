@@ -1,5 +1,5 @@
-const ProjectsModel = require("../models/projects.model");
-require("../models/projects.model")
+import ProjectsModel from "../models/projects.model.js"
+// const ProjectsModel = require("../models/projects.model");
 
 async function show(req, res) {
     let loginStatus = "Login";
@@ -13,6 +13,6 @@ async function show(req, res) {
     });
 }
 
-module.exports = {
+export {
     show
   };

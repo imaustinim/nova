@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+// const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 // const genreSchema = require("./schemas/genres.model");
 // const SocialMediaSchema = require("./schemas/socialmedia.model");
@@ -105,4 +106,4 @@ const projectsSchema = new Schema({
     timestamps: true,
 });
 
-module.exports = mongoose.model("Projects", projectsSchema)
+export default mongoose.model("Projects", projectsSchema)

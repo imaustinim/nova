@@ -1,9 +1,9 @@
-const UserModel = require("../models/user.model")
-const ProjectsModel = require("../models/projects.model")
+import UsersModel from "../models/users.model.js"
+import ProjectsModel from "../models/projects.model.js"
 
 async function show(req, res) {
     const loginStatus = req.isAuthenticated() ? "Logout" : "Login";
-    const users = await UserModel.find();
+    const users = await UsersModel.find();
     res.render("users/index", {
         title: "Users Page",
         loginStatus: loginStatus,
@@ -19,7 +19,7 @@ async function showUser(req, res) {
         "details.authorId" : req.params.id
     });
     
-    const user = await UserModel.findById(req.params.id);
+    const user = await UsersModel.findById(req.params.id);
     if (req.isAuthenticated()) {
         loginStatus = "Logout";
         if (user._id.toString() == req.user._id.toString()) {
@@ -50,7 +50,7 @@ async function showEdit(req, res) {
 
 async function submitEdit(req, res) {
     if (req.isAuthenticated()) {
-        const userbyUsername = await UserModel.findOne({ "details.username" : req.body.username })
+        const userbyUsername = await UsersModel.findOne({ "details.username" : req.body.username })
         if (userbyUsername !== null && userbyUsername._id !== req.user.id) {
             res.render("users/edit", {
                 title: "Edit Profile",
@@ -60,7 +60,7 @@ async function submitEdit(req, res) {
                 message: "Username taken"
             })
         } else {
-            const user = await UserModel.findByIdAndUpdate(req.user.id,{
+            const user = await UsersModel.findByIdAndUpdate(req.user.id,{
                 details: {
                     firstName: req.body.firstName,
                     lastName: req.body.lastName,
@@ -90,7 +90,7 @@ async function submitEdit(req, res) {
     }
 }
 
-module.exports = {
+export default {
     show,
     showUser,
     showEdit,

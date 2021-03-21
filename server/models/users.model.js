@@ -1,7 +1,6 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose"
 const Schema = mongoose.Schema;
-const OrderSchema = require("./schemas/order.model");
-const SocialMediaSchema = require("./schemas/socialmedia.model");
+import SocialMediaSchema from "./schemas/socialmedia.model.js"
 
 const userSchema = new Schema({
     details: {
@@ -56,7 +55,7 @@ const userSchema = new Schema({
         },
     },   
     socialMedia: SocialMediaSchema,
-    orders: [OrderSchema],
+    // orders: [OrderSchema],
     projects: [{
         type: Schema.Types.ObjectId
     }],
@@ -64,4 +63,4 @@ const userSchema = new Schema({
     timestamps: true,
 });
 
-module.exports = mongoose.model("User", userSchema)
+export default mongoose.model("User", userSchema)

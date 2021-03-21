@@ -1,7 +1,7 @@
-const router = require("express").Router();
-const ctrl = require("../controllers/search.controllers")
+import express from "express"
+const router = express.Router();
+import SearchCtrl from "../controllers/search.controllers.js"
 
-router.post("/",  ctrl.search);
+router.post("/",  SearchCtrl.search);
 
-
-module.exports = router;
+export default router;

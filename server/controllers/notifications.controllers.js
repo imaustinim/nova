@@ -10,6 +10,6 @@ function show(req, res) {
     }
 }
 
-module.exports = {
+export default {
     show
   };

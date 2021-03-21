@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose"
 const Schema = mongoose.Schema;
 
 const SocialMediaSchema = new Schema({
@@ -37,4 +37,4 @@ const SocialMediaSchema = new Schema({
     // },
 })
 
-module.exports = SocialMediaSchema
+export default SocialMediaSchema

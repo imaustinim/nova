@@ -1,10 +1,11 @@
-const router = require("express").Router();
-const projectsCtrl = require("../controllers/projects.controllers");
-const upload = require("./upload");
+import express from "express"
+const router = express.Router();
+import ProjectsCtrl from "../controllers/projects.controllers.js"
+import upload from "./upload.js"
 
-router.get("/", projectsCtrl.show);
-router.get("/create", projectsCtrl.showCreateForm);
-router.post("/submit", upload.single("image"), projectsCtrl.submitCreateForm);
-router.get("/:id", projectsCtrl.showProject);
+router.get("/", ProjectsCtrl.show);
+router.get("/create", ProjectsCtrl.showCreateForm);
+router.post("/submit", upload.single("image"), ProjectsCtrl.submitCreateForm);
+router.get("/:id", ProjectsCtrl.showProject);
 
-module.exports = router;
+export default router;

@@ -1,6 +1,11 @@
-const router = require("express").Router();
-const ctrl = require("../controllers/index.controllers")
+import express from "express"
+const router = express.Router();
+import * as IndexCtrl from "../controllers/index.controllers.js" 
 
-router.get("/", ctrl.show);
+router.get("/", IndexCtrl.show);
+router.get("/test", (req, res) => {
+    res.render("")
+});
 
-module.exports = router;
+
+export default router;

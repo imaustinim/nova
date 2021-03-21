@@ -1,4 +1,4 @@
-const ProjectsModel = require("../models/projects.model")
+import ProjectsModel from "../models/projects.model.js"
 
 async function show(req, res) {
     const loginStatus = req.isAuthenticated() ? "Logout" : "Login";
@@ -75,7 +75,7 @@ async function showProject(req, res) {
             // loginStatus: loginStatus,
 }
 
-module.exports = {
+export default {
     show,
     showCreateForm,
     submitCreateForm,

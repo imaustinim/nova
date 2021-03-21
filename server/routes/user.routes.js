@@ -1,11 +1,12 @@
-const router = require("express").Router();
-const userCtrl = require("../controllers/user.controllers");
-const authCtrl = require("../controllers/auth.controllers")
+import express from "express"
+const router = express.Router();
+import UserCtrl from "../controllers/users.controllers.js"
+import AuthCtrl from "../controllers/auth.controllers.js"
 
-router.get("/", userCtrl.show);
-router.get("/:id", userCtrl.showUser);
-router.get("/:id/edit", authCtrl.ensureAuth, userCtrl.showEdit);
-router.post("/:id/submit", userCtrl.submitEdit);
+router.get("/", UserCtrl.show);
+router.get("/:id", UserCtrl.showUser);
+router.get("/:id/edit", AuthCtrl.ensureAuth, UserCtrl.showEdit);
+router.post("/:id/submit", UserCtrl.submitEdit);
 
 
-module.exports = router;
+export default router;

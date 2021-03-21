@@ -1,5 +1,3 @@
-const passport = require("passport");
-
 function redirect(req, res) {
     if (req.user.username == null) {
         res.redirect(`/users/${req.user._id}/edit`);
@@ -36,7 +34,7 @@ async function userProfile(req, res) {
     }
 }
 
-module.exports = {
+export default {
     redirect,
     login,
     logout,

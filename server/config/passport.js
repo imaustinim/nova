@@ -1,9 +1,16 @@
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const FacebookStrategy = require("passport-facebook").Strategy;
-const TwitterStrategy = require("passport-twitter").Strategy;
-const TwitchStrategy = require("passport-twitch").OAuth2Strategy;
-const UserModel = require("../models/user.model")
+import passport from "passport";
+import { OAuth2Strategy as GoogleStrategy } from "passport-google-oauth";
+import { Strategy as FacebookStrategy } from "passport-facebook";
+import { Strategy as TwitterStrategy } from "passport-twitter";
+import { OAuth2Strategy as TwitchStrategy } from "passport-twitch";
+
+
+// const passport = require('passport');
+// const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+// const FacebookStrategy = require("passport-facebook").Strategy;
+// const TwitterStrategy = require("passport-twitter").Strategy;
+// const TwitchStrategy = require("passport-twitch").OAuth2Strategy;
+// const UserModel = require("../models/user.model")
 
 function google(passport) {
     passport.use(new GoogleStrategy({
@@ -193,9 +200,8 @@ function twitch(passport) {
     })
 }
 
-module.exports = {
+export {
     google,
     facebook,
-    // twitter,
     twitch
 }
