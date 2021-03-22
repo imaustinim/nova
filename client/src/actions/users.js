@@ -1,4 +1,4 @@
-import * as api from "../api";
+import * as api from "../api/users";
 
 // Action Creators
 export const getUsers = () => async (dispatch) => {

@@ -1,0 +1,100 @@
+<%- include('../partials/_header') %>
+<main>
+    <div class="container">
+        <div class="main-body">
+            <div class="row justify-content-md-center g-3">
+                <div class="col-md-8">
+                    <div class="col-md-12">
+                        <div class="card shadow-sm py-3 mt-3">
+                            <div class="card-body">
+                                <div class="d-flex flex-column align-items-center text-center">
+                                    <h1>Create New Project</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 my-3">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <form class="row g-3" action="/projects/submit" method="POST" enctype="multipart/form-data">
+                                    <div class="col-md-6">
+                                        <label for="project-name" class="form-label">Project Name</label>
+                                        <input type="text" class="form-control" id="project-name" placeholder="My Project" name="projectName" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="project-type" class="form-label">Project Type</label>
+                                        <input type="text" class="form-control" id="project-type" placeholder="Album, Single, EP, etc..." name="projectType" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="author" class="form-label">Author</label>
+                                        <input type="text" class="form-control" id="author" placeholder="John Doe" name="authorName" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="date" class="form-label">Release Date</label>
+                                        <input type="date" class="form-control" id="date" placeholder="Release Date" name="releaseDate" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="project-type" class="form-label">Genre</label>
+                                        <input type="text" class="form-control" id="genre" placeholder="Pop, Jazz, Rock" name="genres" required>
+                                        <div id="genreHelp" class="form-text fst-italic">Seperate genres with commas. (",")</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="capital-required" class="form-label">Visibility Status</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="visibility" id="private" value="private">
+                                            <label class="form-check-label" for="private">Private (Only specific people can see)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="visibility" id="public" value="public" checked>
+                                            <label class="form-check-label" for="public">Public (Everyone can see)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="description" class="form-label">Description</label>
+                                        <textarea class="form-control" id="description" rows="3" name="description"></textarea>
+                                        <div id="descriptionHelp" class="form-text fst-italic">Why should someone invest with you?</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="capital-required" class="form-label">Capital Required</label>
+                                        <div class="form-floating">
+                                            <div class="input-group">
+                                                <div class="input-group-text px-4">$</div>
+                                                <input type="text" class="form-control" id="capital-required" placeholder="10,000" name="capitalRequired" required>
+                                            </div>
+                                            <div id="capital-requiredHelp" class="form-text fst-italic">How much capital are you looking to raise?</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="capital-required" class="form-label">Return Rate</label>
+                                        <div class="form-floating">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control text-end" id="capital-required" placeholder="10.0" name="returnRate" required>
+                                                <div class="input-group-text px-4">%</div>
+                                            </div>
+                                            <div id="capital-requiredHelp" class="form-text fst-italic">What rate of return will you give back?</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="image" class="form-label">Thumbnail Photo</label>
+                                        <div class="input-group mb-3">
+                                            <!-- <label class="input-group-text" for="video">Video</label> -->
+                                            <input type="file" class="form-control" accept="image/*" id="image" name="image">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="video" class="form-label">Add Video</label>
+                                        <input type="text" class="form-control" id="video" name="videoUrl" placeholder="https://www.youtube.com/embed/mQ055hHdxbE">
+                                    </div>
+                                    <div class="col-12 flex-column align-items-center text-center mt-3 mb-2">
+                                        <button type="submit" class="btn btn-primary">Create Project</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<%- include('../partials/_footer') %>

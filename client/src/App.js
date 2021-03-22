@@ -10,6 +10,8 @@ import Project from "./components/projects/project"
 import Users from "./components/users/users"
 import Styles from "./styles";
 
+import Header from "./components/Header"
+
 const App = () => {
     const classes = Styles();
     const dispatch = useDispatch();
@@ -20,9 +22,11 @@ const App = () => {
 
     return (
         <Container maxWidth="lg">
+            <Header title="hi" />
+
             <AppBar className={classes.appBar} position="static" color="inherit">
                 <Typography variant="h2" align="center">Test</Typography>
-                <img className={classes.image} src={testImage} alt="hi" height="60"/>
+                <img className={classes.image} src={testImage} alt="hi" height="60" />
             </AppBar>
             <Grow in>
                 <Container>

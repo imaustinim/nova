@@ -8,7 +8,9 @@ function show(req, res) {
 }
 
 function search(req, res) {
-    res.send(req.body);
+    const results = req.body;
+
+
 }
 
 export default  {

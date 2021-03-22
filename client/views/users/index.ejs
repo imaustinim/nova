@@ -1,0 +1,42 @@
+<%- include('../partials/_header') %>
+<link rel="stylesheet" href="/stylesheets/users/index.css"/>
+<main>
+    <div class="container">
+        <div class="main-body">
+            <div class="row g-3">
+                <div class="col-md-12">
+                    <div class="card shadow-sm mt-3">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <h1>ARTISTS</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% for (user of users) { %>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <a href="/users/<%= user._id %>" class="card-link card-img-a ratio ratio-1x1">
+                                <img class="card-img-top card-img" src="/images/projects/<%= user.details.profilePicture %>" alt="">
+                            </a>
+                            <div class="card-body">
+                                <h6 class="card-title text-truncate fs-5 my-0"><%= user.details.displayName %></h5>
+                                <div class="row g-0">
+                                    <div class="col-md-12 d-flex justify-content-between">
+                                        <a href="/user/<%= user.details.displayName %>" class="card-text text-muted text-truncate card-artist"><%= user.details.position %></a>
+                                        <div>
+                                            <a href="/genres/<%= user.details.genres[0] %>" class="card-text text-muted text-truncate card-genre"><%= user.details.genres[0] %></a>
+                                            <a href="/genres/<%= user.details.genres[1] %>" class="card-text text-muted text-truncate card-genre"><%= user.details.genres[1] %></a>
+                                            <a href="/genres/<%= user.details.genres[2] %>" class="card-text text-muted text-truncate card-genre"><%= user.details.genres[2] %></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</main>
+<%- include('../partials/_footer') %>
