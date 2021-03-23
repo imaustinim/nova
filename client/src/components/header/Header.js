@@ -1,42 +1,52 @@
 import React from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, IconButton, Typography, InputBase, Badge, MenuItem, Menu, Button, ButtonGroup, Box } from "@material-ui/core"
+import { AppBar, Toolbar, IconButton, Typography, InputBase, Badge, MenuItem, Menu, Button, ButtonGroup, Tab, Tabs } from "@material-ui/core"
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import AddIcon from '@material-ui/icons/Add';
 
 import PropTypes from 'prop-types'
 import Link from "./Links"
-import { Grid } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
+    start: {
+        flexDirection: "row",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        float: "left"
+    },
+    center: {
+        marginLeft: "auto",
+        marginRight: "auto",
+    },
+    end: {
+        flexDirection: "row",
+        justifyContent: "flex-end",
+        display: "flex",
+        alignItems: "center",
+        float: "right"
+    },
     grow: {
         flexGrow: 1,
     },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
     title: {
         display: 'none',
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up('md')]: {
             display: 'block',
         },
+        paddingLeft: theme.spacing(2),
+        paddingRight: theme.spacing(2),
     },
     searchButton: {
         borderRadius: theme.shape.borderRadius,
         width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(4),
-            marginRight: theme.spacing(4),
-            width: 'auto',
+        [theme.breakpoints.up('md')]: {
+            marginRight: theme.spacing(7),
         },
-        // position: "absolute",
-        // left: "15%",
-        // right: "15%",
-        // justifyContent: "center"
     },
     searchIcon: {
         border: 0,
@@ -56,28 +66,39 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             backgroundColor: fade(theme.palette.common.white, 0.1),
         },
+        transition: theme.transitions.create('width'),
+        [theme.breakpoints.up('sm')]: {
+            width: '360px',
+        },
+        transition: theme.transitions.create('width'),
+        [theme.breakpoints.up('md')]: {
+            width: '480px',
+        },
+        transition: theme.transitions.create('width'),
+        [theme.breakpoints.up('lg')]: {
+            width: '480px',
+        },
+
+
     },
     inputInput: {
         padding: theme.spacing(1, 1, 1, 0),
         paddingLeft: `calc(1em)`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('md')]: {
-            width: '20ch',
-        },
+        // transition: theme.transitions.create('width'),
+        // width: '100%',
     },
     sectionDesktop: {
         display: 'none',
-        [theme.breakpoints.up('md')]: {
+        [theme.breakpoints.up('sm')]: {
             display: 'flex',
         },
     },
     sectionMobile: {
         display: 'flex', 
-        [theme.breakpoints.up('md')]: {
-        display: 'none',
+        [theme.breakpoints.up('sm')]: {
+            display: 'none',
+        },
     },
-},
 }));
   
 const Header = () => {
@@ -133,9 +154,9 @@ const Header = () => {
             onClose={handleMobileMenuClose}
         >
             <MenuItem>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-                <Badge badgeContent={4} color="secondary">
-                <MailIcon />
+            <IconButton color="inherit">
+                <Badge color="secondary">
+                <AddIcon/>
                 </Badge>
             </IconButton>
             <p>Messages</p>
@@ -166,40 +187,46 @@ const Header = () => {
             <div className={classes.grow}>
                 <AppBar position="static">
                     <Toolbar>
-                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="open drawer" >
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography className={classes.title} variant="h6" noWrap>
-                            NOVA-LOGO
-                        </Typography>
-                        
-                        <ButtonGroup disableElevation className={classes.searchButton}>
-                            <InputBase placeholder="Search" classes={{root: classes.inputRoot, input: classes.inputInput, }} inputProps={{ 'aria-label': 'search' }} />
-                            <Button className={classes.searchIcon}>
-                                <SearchIcon/>
-                            </Button>
-                        </ButtonGroup>
-
-                        <div className={classes.grow}></div>
-                        <div className={classes.sectionDesktop}>
-                            <IconButton aria-label="show 4 new mails" color="inherit">
-                                <Badge badgeContent={4} color="secondary">
-                                    <MailIcon/>
-                                </Badge>
+                        <div className={classes.start}>
+                            <IconButton edge="start" color="inherit" aria-label="open drawer">
+                                <MenuIcon/>
                             </IconButton>
-                            <IconButton aria-label="show 17 new notifications" color="inherit">
-                                <Badge badgeContent={17} color="secondary">
-                                    <NotificationsIcon/>
-                                </Badge>
-                            </IconButton>
-                            <IconButton edge="end" aria-label="account of current user" aria-controls={menuId} aria-haspopup="true" onClick={handleProfileMenuOpen} color="inherit">
-                                <AccountCircle/>
-                            </IconButton>
+                            <a href="" >
+                                <Typography className={classes.title} variant="h6" noWrap>
+                                    NOVA-LOGO
+                                </Typography>
+                            </a>
                         </div>
-                        <div className={classes.sectionMobile}>
-                            <IconButton aria-label="show more" aria-controls={mobileMenuId} aria-haspopup="true" onClick={handleMobileMenuOpen} color="inherit">
-                                <MoreIcon/>
-                            </IconButton>
+                        <div className={classes.center}>
+                            <ButtonGroup disableElevation className={classes.searchButton}>
+                                <InputBase placeholder="Search" classes={{root: classes.inputRoot, input: classes.inputInput, }} inputProps={{ 'aria-label': 'search' }} />
+                                <Button className={classes.searchIcon}>
+                                    <SearchIcon/>
+                                </Button>
+                            </ButtonGroup>
+                        </div>
+                        <div className={classes.end}>
+                            <div className={classes.grow}></div>
+                            <div className={classes.sectionDesktop}>
+                                <IconButton color="inherit">
+                                    <Badge color="secondary">
+                                        <AddIcon/>
+                                    </Badge>
+                                </IconButton>
+                                <IconButton aria-label="show 17 new notifications" color="inherit">
+                                    <Badge badgeContent={5} color="secondary">
+                                        <NotificationsIcon/>
+                                    </Badge>
+                                </IconButton>
+                                <IconButton edge="end" aria-label="account of current user" aria-controls={menuId} aria-haspopup="true" onClick={handleProfileMenuOpen} color="inherit">
+                                    <AccountCircle/>
+                                </IconButton>
+                            </div>
+                            <div className={classes.sectionMobile}>
+                                <IconButton aria-label="show more" aria-controls={mobileMenuId} aria-haspopup="true" onClick={handleMobileMenuOpen} color="inherit">
+                                    <MoreIcon/>
+                                </IconButton>
+                            </div>
                         </div>
                     </Toolbar>
                 </AppBar>
