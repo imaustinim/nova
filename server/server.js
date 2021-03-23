@@ -61,10 +61,13 @@ app.use(passport.initialize());
 app.use(passport.session()); 
 
 // static setup
+// app.set('view engine', 'jsx');
 // app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'ejs');
-// app.use(express.static(path.join(__dirname, 'public')));
-
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, 'build')));
+app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+})
 
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));

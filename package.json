@@ -3,8 +3,5 @@
         "client": "npm start --prefix client",
         "server": "cd server && nodemon server.js",
         "dev": "NODE_ENV=development concurrently \"npm run server\" \"npm run client\""
-    },
-    "dependencies": {
-        "mongoose": "^5.11.15"
     }
 }

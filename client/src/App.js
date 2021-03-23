@@ -1,46 +1,45 @@
-import React, { useEffect } from "react";
-import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
-import { useDispatch } from "react-redux";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { makeStyles } from '@material-ui/core/styles';
 
-import { getUsers } from "./actions/users"
-
-
-import testImage from "./images/frank-ocean-blond_sq-39d3ea0f3d905cd9c9674e7ebfb68ffcc4dbb441.jpeg"
-import Project from "./components/projects/project"
-import Users from "./components/users/users"
-import Styles from "./styles";
-
-import Header from "./components/Header"
+import Header from "./components/header/Header"
+import Home from "./pages/home/Home"
+import API from "./pages/api/API"
+import Auth from "./pages/auth/Auth"
+import Projects from "./pages/projects/Projects"
+import Users from "./pages/users/Users"
+import Search from "./pages/search/Search"
+import Notifications from "./pages/notifications/Notifications"
+import Footer from "./components/footer/Footer"
 
 const App = () => {
-    const classes = Styles();
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getUsers());
-    }, [dispatch]);
-
     return (
-        <Container maxWidth="lg">
-            <Header title="hi" />
-
-            <AppBar className={classes.appBar} position="static" color="inherit">
-                <Typography variant="h2" align="center">Test</Typography>
-                <img className={classes.image} src={testImage} alt="hi" height="60" />
-            </AppBar>
-            <Grow in>
-                <Container>
-                    <Grid container justify="space-between" alignItems="stretch" spacing={3}>
-                        <Grid item xs={12} sm={7}>
-                            <Project />
-                        </Grid>
-                        <Grid item xs={12} sm={4}>
-                            <Users />
-                        </Grid>
-                    </Grid>
-                </Container>
-            </Grow>
-        </Container>
+        <Router>
+            <Header/>
+            <Switch>
+                <Route path="/api">
+                    <API/>
+                </Route>
+                <Route path="/auth">
+                    <Auth/>
+                </Route>
+                <Route path="/projects">
+                    <Projects/>
+                </Route>
+                <Route path="/users">
+                    <Users/>
+                </Route>
+                <Route path="/search">
+                    <Search/>
+                </Route>
+                <Route path="/notifications">
+                    <Notifications/>
+                </Route>
+                <Route path="/">
+                    <Home/>
+                </Route>
+            </Switch>
+            <Footer/>
+        </Router>
     )
 }
 
