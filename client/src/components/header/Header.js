@@ -138,8 +138,21 @@ const Header = () => {
             onClose={handleMenuClose}
             getContentAnchorEl={null}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <Link to="/users">
+                <MenuItem onClick={handleMenuClose}>
+                    Profile
+                </MenuItem>
+            </Link>
+            <Link to="/settings">
+                <MenuItem onClick={handleMenuClose}>
+                    Settings    
+                </MenuItem>
+            </Link>
+            <Link to="/auth">
+                <MenuItem onClick={handleMenuClose}>
+                    Login                
+                </MenuItem>
+            </Link>
         </Menu>
     );
   
@@ -156,20 +169,24 @@ const Header = () => {
             getContentAnchorEl={null}
         >
             <MenuItem>
-            <IconButton color="inherit">
-                <Badge color="secondary">
-                <AddIcon/>
-                </Badge>
-            </IconButton>
-            <p>Messages</p>
+                <Link to="/projects/create">
+                    <IconButton color="inherit">
+                        <Badge color="secondary">
+                            <AddIcon/>
+                        </Badge>
+                    </IconButton>
+                    <p>Create</p>
+                </Link>
             </MenuItem>
             <MenuItem>
-            <IconButton aria-label="show 11 new notifications" color="inherit">
-                <Badge badgeContent={11} color="secondary">
-                <NotificationsIcon />
-                </Badge>
-            </IconButton>
-            <p>Notifications</p>
+                <Link to="/notifications">
+                    <IconButton aria-label="show 11 new notifications" color="inherit">
+                        <Badge color="secondary">
+                            <NotificationsIcon />
+                        </Badge>
+                    </IconButton>
+                    <p>Notifications</p>
+                </Link>
             </MenuItem>
             <MenuItem onClick={handleProfileMenuOpen}>
             <IconButton
@@ -193,19 +210,21 @@ const Header = () => {
                             <IconButton edge="start" color="inherit" aria-label="open drawer">
                                 <MenuIcon/>
                             </IconButton>
-                            <a href="" >
+                            <Link to="/">
                                 <Typography className={classes.title} variant="h6" noWrap>
                                     NOVA-LOGO
                                 </Typography>
-                            </a>
+                            </Link>
                         </div>
                         <div className={classes.center}>
-                            <ButtonGroup disableElevation className={classes.searchButton}>
-                                <InputBase placeholder="Search" classes={{root: classes.inputRoot, input: classes.inputInput, }} inputProps={{ 'aria-label': 'search' }} />
-                                <Button className={classes.searchIcon}>
-                                    <SearchIcon/>
-                                </Button>
-                            </ButtonGroup>
+                            <form action="/search" method="POST">
+                                <ButtonGroup disableElevation className={classes.searchButton}>
+                                    <InputBase placeholder="Search" classes={{root: classes.inputRoot, input: classes.inputInput, }} inputProps={{ 'aria-label': 'search' }} />
+                                    <Button type="submit" className={classes.searchIcon}>
+                                        <SearchIcon/>
+                                    </Button>
+                                </ButtonGroup>
+                            </form>
                         </div>
                         <div className={classes.end}>
                             <div className={classes.grow}></div>
