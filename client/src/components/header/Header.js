@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { fade, makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, IconButton, Typography, InputBase, Badge, MenuItem, Menu, Button, ButtonGroup, Tab, Tabs } from "@material-ui/core"
 import MenuIcon from '@material-ui/icons/Menu';
@@ -9,7 +10,6 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import AddIcon from '@material-ui/icons/Add';
 
 import PropTypes from 'prop-types'
-import Link from "./Links"
 
 const useStyles = makeStyles((theme) => ({
     start: {
@@ -130,12 +130,13 @@ const Header = () => {
     const renderMenu = (
         <Menu
             anchorEl={anchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             id={menuId}
             keepMounted
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
             open={isMenuOpen}
             onClose={handleMenuClose}
+            getContentAnchorEl={null}
         >
             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
@@ -146,12 +147,13 @@ const Header = () => {
     const renderMobileMenu = (
         <Menu
             anchorEl={mobileMoreAnchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             id={mobileMenuId}
             keepMounted
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
+            getContentAnchorEl={null}
         >
             <MenuItem>
             <IconButton color="inherit">
@@ -210,12 +212,16 @@ const Header = () => {
                             <div className={classes.sectionDesktop}>
                                 <IconButton color="inherit">
                                     <Badge color="secondary">
-                                        <AddIcon/>
+                                        <Link to="/projects">
+                                            <AddIcon/>
+                                        </Link>
                                     </Badge>
                                 </IconButton>
                                 <IconButton aria-label="show 17 new notifications" color="inherit">
                                     <Badge badgeContent={5} color="secondary">
-                                        <NotificationsIcon/>
+                                        <Link to="/notifications">
+                                            <NotificationsIcon/>
+                                        </Link>
                                     </Badge>
                                 </IconButton>
                                 <IconButton edge="end" aria-label="account of current user" aria-controls={menuId} aria-haspopup="true" onClick={handleProfileMenuOpen} color="inherit">

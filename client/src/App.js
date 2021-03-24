@@ -31,10 +31,10 @@ const App = () => {
                 <Route path="/search">
                     <Search/>
                 </Route>
-                <Route path="/notifications">
+                <Route exact path="/notifications">
                     <Notifications/>
                 </Route>
-                <Route path="/">
+                <Route exact path="/">
                     <Home/>
                 </Route>
             </Switch>
