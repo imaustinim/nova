@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { Link } from "react-router-dom";
 import { fade, makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, IconButton, Typography, InputBase, Badge, MenuItem, Menu, Button, ButtonGroup, Tab, Tabs } from "@material-ui/core"
@@ -10,6 +10,10 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import AddIcon from '@material-ui/icons/Add';
 
 import PropTypes from 'prop-types'
+import Search from '../../pages/search/Search';
+import SearchFunction from "../../utilities/Search"
+
+const names = ["Aaran", "Aaren", "Aarez", "Aarman", "Aaron", "Aaron-James", "Aarron", "Aaryan", "Aaryn", "Aayan", "Aazaan", "Abaan", "Abbas", "Abdallah", "Abdalroof", "Abdihakim", "Abdirahman", "Abdisalam", "Abdul", "Abdul-Aziz", "Abdulbasir", "Abdulkadir", "Abdulkarem", "Abdulkhader", "Abdullah", "Abdul-Majeed", "Abdulmalik", "Abdul-Rehman", "Abdur", "Abdurraheem", "Abdur-Rahman", "Abdur-Rehmaan", "Abel", "Abhinav", "Abhisumant", "Abid", "Abir", "Abraham", "Abu", "Abubakar", "Ace", "Adain", "Adam", "Adam-James", "Addison", "Addisson", "Adegbola", "Adegbolahan", "Aden", "Adenn", "Adie", "Adil", "Aditya", "Adnan", "Adrian", "Adrien", "Aedan", "Aedin", "Aedyn", "Aeron", "Afonso", "Ahmad", "Ahmed", "Ahmed-Aziz", "Ahoua", "Ahtasham", "Aiadan", "Aidan", "Aiden", "Aiden-Jack", "Aiden-Vee", "Aidian", "Aidy", "Ailin", "Aiman", "Ainsley", "Ainslie", "Airen", "Airidas", "Airlie", "AJ", "Ajay", "A-Jay", "Ajayraj", "Akan", "Akram", "Al", "Ala", "Alan", "Alanas", "Alasdair", "Alastair", "Alber", "Albert", "Albie", "Aldred", "Alec", "Aled", "Aleem", "Aleksandar", "Aleksander", "Aleksandr", "Aleksandrs", "Alekzander", "Alessandro", "Alessio", "Alex", "Alexander", "Alexei", "Alexx", "Alexzander", "Alf", "Alfee", "Alfie", "Alfred", "Alfy", "Alhaji", "Al-Hassan", "Ali", "Aliekber", "Alieu", "Alihaider", "Alisdair", "Alishan", "Alistair", "Alistar", "Alister", "Aliyaan", "Allan", "Allan-Laiton", "Allen", "Allesandro", "Allister", "Ally", "Alphonse", "Altyiab", "Alum", "Alvern", "Alvin", "Alyas", "Amaan", "Aman", "Amani", "Ambanimoh", "Ameer", "Amgad", "Ami", "Amin", "Amir", "Ammaar", "Ammar", "Ammer", "Amolpreet", "Amos", "Amrinder", "Amrit", "Amro", "Anay", "Andrea", "Andreas", "Andrei", "Andrejs", "Andrew", "Andy", "Anees", "Anesu", "Angel", "Angelo", "Angus", "Anir", "Anis", "Anish", "Anmolpreet", "Annan", "Anndra", "Anselm", "Anthony", "Anthony-John", "Antoine", "Anton", "Antoni", "Antonio", "Antony"]
 
 const useStyles = makeStyles((theme) => ({
     start: {
@@ -22,8 +26,16 @@ const useStyles = makeStyles((theme) => ({
     center: {
         marginLeft: "auto",
         marginRight: "auto",
+        position: "absolute",
+        left: "50%",
+        transform: "translate(-50%, 0)",
+        textAlign: "center",
+        justifyContent: "center",
     },
     end: {
+        position: "absolute",
+        right: "0",
+        transform: "translate(-24px, 0)",
         flexDirection: "row",
         justifyContent: "flex-end",
         display: "flex",
@@ -44,9 +56,10 @@ const useStyles = makeStyles((theme) => ({
     searchButton: {
         borderRadius: theme.shape.borderRadius,
         width: '100%',
-        [theme.breakpoints.up('md')]: {
-            marginRight: theme.spacing(7),
-        },
+
+        // [theme.breakpoints.up('md')]: {
+            // marginRight: theme.spacing(7),
+        // },
     },
     searchIcon: {
         border: 0,
@@ -68,34 +81,28 @@ const useStyles = makeStyles((theme) => ({
         },
         transition: theme.transitions.create('width'),
         [theme.breakpoints.up('sm')]: {
-            width: '360px',
+            width: '320px',
         },
         transition: theme.transitions.create('width'),
         [theme.breakpoints.up('md')]: {
             width: '480px',
         },
-        transition: theme.transitions.create('width'),
-        [theme.breakpoints.up('lg')]: {
-            width: '480px',
-        },
-
-
     },
     inputInput: {
         padding: theme.spacing(1, 1, 1, 0),
         paddingLeft: `calc(1em)`,
-        // transition: theme.transitions.create('width'),
-        // width: '100%',
     },
     sectionDesktop: {
         display: 'none',
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up('md')]: {
             display: 'flex',
         },
     },
     sectionMobile: {
-        display: 'flex', 
-        [theme.breakpoints.up('sm')]: {
+        position: "absolute",
+        right: "0",
+        transform: "translate(12px, 0)",
+        [theme.breakpoints.up('md')]: {
             display: 'none',
         },
     },
@@ -103,8 +110,8 @@ const useStyles = makeStyles((theme) => ({
   
 const Header = () => {
     const classes = useStyles();
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -125,7 +132,12 @@ const Header = () => {
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
-  
+
+    const [search, setSearch] = useState("");
+    const filteredResults = names.filter( name => {
+        return name.toLowerCase().includes(search.toLowerCase());
+    })
+
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
         <Menu
@@ -148,9 +160,14 @@ const Header = () => {
                     Settings    
                 </MenuItem>
             </Link>
-            <Link to="/auth">
+            <Link to="/auth/login">
                 <MenuItem onClick={handleMenuClose}>
                     Login                
+                </MenuItem>
+            </Link>
+            <Link to="/auth/logout">
+                <MenuItem onClick={handleMenuClose}>
+                    Logout                
                 </MenuItem>
             </Link>
         </Menu>
@@ -219,7 +236,12 @@ const Header = () => {
                         <div className={classes.center}>
                             <form action="/search" method="POST">
                                 <ButtonGroup disableElevation className={classes.searchButton}>
-                                    <InputBase placeholder="Search" classes={{root: classes.inputRoot, input: classes.inputInput, }} inputProps={{ 'aria-label': 'search' }} />
+                                    <InputBase 
+                                        placeholder="Search"
+                                        classes={{root: classes.inputRoot, input: classes.inputInput, }}
+                                        inputProps={{ 'aria-label': 'search' }}
+                                        onChange={e => setSearch(e.target.value)}
+                                    />
                                     <Button type="submit" className={classes.searchIcon}>
                                         <SearchIcon/>
                                     </Button>
@@ -257,6 +279,9 @@ const Header = () => {
                 </AppBar>
                 {renderMobileMenu}
                 {renderMenu}
+                {/* {filteredResults.map((names) => (
+                    names
+                ))} */}
             </div>
         );
     }

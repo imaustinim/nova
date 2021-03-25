@@ -1,6 +1,14 @@
+import { BrowserRouter as Switch, Route } from "react-router-dom";
+import Login from "./Login"
+import Logout from "./Logout"
+
+
 const Auth = () => {
     return (
-        <h1>Auth</h1>
+        <Switch>
+            <Route path="/auth/login" component={Login}/>
+            <Route path="/auth/logout" component={Logout}/>
+        </Switch>
     )
 }
 
