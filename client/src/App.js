@@ -1,7 +1,6 @@
+import { useContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme, ThemeProvider } from "@material-ui/core"
-import { blueGrey, grey, indigo } from "@material-ui/core/colors";
 
 import Header from "./components/header/Header"
 import Home from "./pages/home/Home"
@@ -12,6 +11,7 @@ import Users from "./pages/users/Users"
 import Search from "./pages/search/Search"
 import Notifications from "./pages/notifications/Notifications"
 import Footer from "./components/footer/Footer"
+import { myContext } from "./utilities/Users";
 
 const theme = createMuiTheme({
     palette: {
@@ -25,6 +25,9 @@ const theme = createMuiTheme({
   });
 
 const App = () => {
+    const userObject = useContext(myContext);
+    console.log(userObject);
+
     return (
         <ThemeProvider theme={theme}>
             <Router>
@@ -36,7 +39,7 @@ const App = () => {
                     <Route path="/users" component={Users}/>
                     <Route path="/search" component={Search}/>
                     <Route path="/notifications" component={Notifications}/>
-                    <Route path="/" component={Home}/>
+                    <Route exact path="/" component={Home}/>
                 </Switch>
                 <Footer/>
             </Router>

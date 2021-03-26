@@ -12,6 +12,10 @@ async function show(req, res) {
     });
 }
 
+function getUser(req, res) {
+    res.send(req.user);
+}
+
 async function showUser(req, res) {
     let loginStatus = "Login"
     let stylesheet = "/stylesheets/hidden.css";
@@ -92,6 +96,7 @@ async function submitEdit(req, res) {
 
 export default {
     show,
+    getUser,
     showUser,
     showEdit,
     submitEdit,
