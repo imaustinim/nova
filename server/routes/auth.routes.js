@@ -19,13 +19,13 @@ router.get("/twitter/callback", passport.authenticate("twitter", { failureRedire
 router.get("/twitch", passport.authenticate("twitch"));
 router.get("/twitch/callback", passport.authenticate("twitch", { failureRedirect: "/"}), AuthCtrl.redirect);
 
-// @desc    Login Page
-router.get("/login", AuthCtrl.login);
+// // @desc    Login Page
+// router.get("/login", AuthCtrl.login);
 
-// @desc    Logout User
-router.get("/logout", AuthCtrl.logout);
+// // @desc    Logout User
+// router.get("/logout", AuthCtrl.logout);
 
-// @desc    Checks if logged in
-router.get("/user", AuthCtrl.userProfile);
+// // @desc    Checks if logged in
+// router.get("/user", AuthCtrl.userProfile);
 
 export default router;

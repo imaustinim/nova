@@ -10,43 +10,47 @@ function google(passport) {
         clientSecret: process.env.GOOGLE_SECRET,
         callbackURL: process.env.GOOGLE_CALLBACK
     },
-    async (accessToken, refreshToken, profile, callback) => {
+    (accessToken, refreshToken, profile, callback) => {
+        // console.log(profile);
         callback(null, profile);
-        // let unique = false;
-        // let tempUsername = "";
-        // while (!unique) {
-        //     tempUsername = Math.random().toString(36).substring(7);
-        //     if (await UserModel.findOne( {"details.username" : tempUsername }) == null) unique = true; 
-        // }
-        // const newUser = {
-        //     details: {
-        //         loginId: profile.id,
-        //         firstName: profile.name.givenName,
-        //         lastName: profile.name.familyName,
-        //         displayName: profile.displayName,
-        //         username: profile.name.givenName + profile.name.familyName + tempUsername,
-        //     }
-        // }
 
-        // try {
-        //     let user = await UserModel.findOne({ "details.loginId" : profile.id })
-        //     if(user) {
-        //         callback(null, user)
-        //     } else {
-        //         user = await UserModel.create(newUser)
-        //         callback(null, user)
-        //     }
-        // } catch(err) {
-        //     console.log(err)
-        // }
+    //     let unique = false;
+    //     let tempUsername = "";
+    //     while (!unique) {
+    //         tempUsername = Math.random().toString(36).substring(7);
+    //         if (UsersModel.findOne( {"details.username" : tempUsername }) == null) unique = true; 
+    //     }
+    //     const newUser = {
+    //         details: {
+    //             loginId: profile.id,
+    //             firstName: profile.name.givenName,
+    //             lastName: profile.name.familyName,
+    //             displayName: profile.displayName,
+    //             username: profile.name.givenName + profile.name.familyName + tempUsername,
+    //         }
+    //     }
+        
+    //     try {
+    //         let user = UsersModel.findOne({ "details.loginId" : profile.id })
+    //         if(user) {
+    //             callback(null, user)
+    //         } else {
+    //             user = UsersModel.create(newUser)
+    //             callback(null, user)
+    //         }
+    //     } catch(err) {
+    //         console.log(err)
+    //     }
     }));
     
     passport.serializeUser((user, callback) => {
-        return callback(null, user)
+        console.log("ser", user)
+        callback(null, user)
     })
 
     passport.deserializeUser((user, callback) => {
-        return callback(null, user)
+        console.log("deser", user)
+        callback(null, user)
     })
     // passport.deserializeUser((id, callback) => {
     //     UserModel.findById(id, (err, user) => {
