@@ -1,0 +1,16 @@
+{
+  "name": "novacane",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "client": "npm start --prefix client",
+    "server": "cd server && nodemon server.js",
+    "dev": "NODE_ENV=development concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^6.0.0"
+  }
+}
