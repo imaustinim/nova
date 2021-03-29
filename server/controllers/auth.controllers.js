@@ -1,12 +1,9 @@
 const passport = require("passport");
 
 function redirect(req, res) {
-    // if (req.user.username == null) {
-    //     res.redirect(`/users/${req.user._id}/edit`);
-    // } else {
-        // console.log(req.user)
-        res.redirect("http://localhost:3000");
-    // }
+    const x = req.isAuthenticated() ? "true" : "false"
+    console.log("Is Auth: " + x)
+    res.redirect("http://localhost:3000");
 }
 
 function login(req, res) {

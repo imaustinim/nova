@@ -13,11 +13,7 @@ async function show(req, res) {
 }
 
 function getUser(req, res) {
-    // console.log(req.user)
-    // console.log("^^^^^")
-    // res.send(req.user)
-    res.status(200).json(req.user);
-
+    res.status(200).send(req.user)
 }
 async function showUser(req, res) {
     let loginStatus = "Login"
