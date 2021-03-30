@@ -1,8 +1,6 @@
 const passport = require("passport");
 
 function redirect(req, res) {
-    const x = req.isAuthenticated() ? "true" : "false"
-    console.log("Is Auth: " + x)
     res.redirect("http://localhost:3000");
 }
 

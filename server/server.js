@@ -3,11 +3,13 @@ const cors = require("cors")
 const path = require("path")
 const dotenv = require("dotenv")
 const logger = require("morgan")
+const favicon = require('serve-favicon');
 const cookieParser = require("cookie-parser")
 const passport = require("passport")
 const session = require("express-session")
 const MongoDBStore = require("connect-mongodb-session")(session)
 const connectDB = require("./config/database")
+const token = require("./config/checkToken");
 
 dotenv.config({ path: "./config/config.env"})
 
@@ -17,7 +19,6 @@ connectDB()
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-
 app.listen(
     PORT,
     console.log(`Server running mode in ${process.env.NODE_ENV} mode on port ${PORT}`)
@@ -49,10 +50,12 @@ app.use((req, res, next) => {
 app.use(passport.initialize());
 app.use(passport.session()); 
 
+// app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(token);
 
 // Routers
 const apiRouter = require("./routes/api.routes");
@@ -64,12 +67,15 @@ const authRouter = require('./routes/auth.routes');
 // const notificationsRouter = require("./routes/notifications.routes");
 
 // Routes
-app.use("/api", apiRouter);
+app.use("/api/users", require("./routes/api/users.routes"));
 // app.use('/', indexRouter);
 app.use('/auth', authRouter);
 // app.use('/users', userRouter);
 // app.use('/projects', projectsRouter);
 // app.use('/s', searchRouter);
 // app.use('/notifications', notificationsRouter);
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
 
 module.exports = app;
